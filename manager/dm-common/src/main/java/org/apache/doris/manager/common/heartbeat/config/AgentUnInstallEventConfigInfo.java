@@ -15,16 +15,27 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { Navigate, Route, Routes } from 'react-router';
-import { AuthLocal } from './local/local';
+package org.apache.doris.manager.common.heartbeat.config;
 
-export function InitializeAuth() {
-    return (
-        <>
-            <Routes>
-                <Route path="studio/*" element={<AuthLocal />} />
-                <Route path="/" element={<Navigate replace to="studio" />} />
-            </Routes>
-        </>
-    );
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AgentUnInstallEventConfigInfo {
+    private String sshUser;
+
+    private int sshPort;
+
+    private String sshKey;
+
+    private String host;
+
+    private String installDir;
+
+    private long agentNodeId;
+
+    private int agentPort;
 }

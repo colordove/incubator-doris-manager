@@ -15,16 +15,24 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { Navigate, Route, Routes } from 'react-router';
-import { AuthLocal } from './local/local';
+package org.apache.doris.manager.common.heartbeat.stage;
 
-export function InitializeAuth() {
-    return (
-        <>
-            <Routes>
-                <Route path="studio/*" element={<AuthLocal />} />
-                <Route path="/" element={<Navigate replace to="studio" />} />
-            </Routes>
-        </>
-    );
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+public enum AgentUnInstallEventStage {
+    AGENT_STOP("agent stop failed", "agent stop succeeded", 1, true);
+
+    private String error;
+
+    private String message;
+
+    private int stage;
+
+    private boolean isLast;
+
 }

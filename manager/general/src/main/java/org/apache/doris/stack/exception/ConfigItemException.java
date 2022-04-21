@@ -15,16 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { Navigate, Route, Routes } from 'react-router';
-import { AuthLocal } from './local/local';
+package org.apache.doris.stack.exception;
 
-export function InitializeAuth() {
-    return (
-        <>
-            <Routes>
-                <Route path="studio/*" element={<AuthLocal />} />
-                <Route path="/" element={<Navigate replace to="studio" />} />
-            </Routes>
-        </>
-    );
+public class ConfigItemException extends Exception {
+
+    public static final String MESSAGE = "配置信息错误，请检查后重新配置:";
+
+    public ConfigItemException(String errorInfo) {
+        super(MESSAGE + errorInfo);
+    }
 }
