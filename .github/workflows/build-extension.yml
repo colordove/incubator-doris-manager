@@ -37,10 +37,22 @@ jobs:
       with:
         distribution: adopt
         java-version: '8'
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          frontend:
+            - 'frontend/**'
+
+      # run only if some file in 'src' folder was changed
     - name: Setup NodeJS
+      if: steps.changes.outputs.frontend == 'true'
       uses: actions/setup-node@v2
       with:
         node-version: '16'
+    - name: Build Frontend
+      run: /bin/bash build_frontend.sh
+
     - name: Setup thrift
       run: |
         sudo apt-get update
